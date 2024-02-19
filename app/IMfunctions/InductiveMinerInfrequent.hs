@@ -28,11 +28,12 @@ inductiveMinerInfrequent f log =
   if f <= 0.0 || f >= 1.0 then inductiveMiner log else processTreeReduction (inductiveMinerInfrequentMain f log)
 
 inductiveMinerInfrequentMain :: Float -> [(Int, [String])] -> TreeNode String
+inductiveMinerInfrequentMain _ [] = Activity tau
 inductiveMinerInfrequentMain f log 
-  | single /= [] = Activity (concat single)
-  | singleFiltering /= [] = Activity (concat singleFiltering)
   | emptyTracesAboveThreshold_ = ExclusiveChoice [Activity tau, inductiveMinerInfrequent f (removeTauListTraceInLog log)]
   | empty /= [] = inductiveMinerInfrequent f (sumValuesByTraces (removeTauListTraceInLog log))
+  | single /= [] = Activity (concat single)
+  | singleFiltering /= [] = Activity (concat singleFiltering)
   | atLeastTwoActivities && concat exclusive /= [] = ExclusiveChoice (callIMF f (xorSplit exclusive log))
   | atLeastTwoActivities && concat sequence /= [] = Sequence (callIMF f (sequenceSplit sequence log))
   | atLeastTwoActivities && concat concurrent /= [] = Concurrent (callIMF f (concurrentSplit concurrent log))

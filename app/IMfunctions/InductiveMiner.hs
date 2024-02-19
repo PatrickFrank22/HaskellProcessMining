@@ -27,8 +27,8 @@ inductiveMiner log = processTreeReduction (inductiveMinerMain log)
 inductiveMinerMain :: [(Int, [String])] -> TreeNode String
 inductiveMinerMain [] = Activity tau
 inductiveMinerMain log 
-  | singleActivity_ /= [] = Activity (concat singleActivity_)
   | emptyTraces_ /= [] = ExclusiveChoice [inductiveMinerMain (removeTauListTraceInLog log), Activity tau]
+  | singleActivity_ /= [] = Activity (concat singleActivity_)
   | atLeastTwoActivities && concat xorCut_ /= [] = ExclusiveChoice (callIM (xorSplit xorCut_ log))
   | atLeastTwoActivities && concat sequenceCut_ /= [] = Sequence (callIM (sequenceSplit sequenceCut_ log))
   | atLeastTwoActivities && concat concurrentCut_ /= [] = Concurrent (callIM (concurrentSplit concurrentCut_ log))

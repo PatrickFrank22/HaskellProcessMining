@@ -84,8 +84,8 @@ activityConcurrent log =
 testActivityConcurrentPerAct :: [(Int, [String])] -> Bool
 testActivityConcurrentPerAct [] = False 
 testActivityConcurrentPerAct log 
-  | singleActivity log /= [] = True
   | emptyTraces log /= [] = True
+  | singleActivity log /= [] = True
   | atLeastTwoActivities && concat (xorCut allAct allTransitions) /= [] = True
   | atLeastTwoActivities && concat (sequenceCut allAct allTransitions) /= [] = True
   | atLeastTwoActivities && concat (concurrentCut allAct allTransitions startAct endAct) /= [] = True
@@ -119,10 +119,10 @@ activityConcurrentIMF f log =
 testActivityConcurrentPerActIMF :: Float -> [(Int, [String])] -> Bool
 testActivityConcurrentPerActIMF _ [] = False 
 testActivityConcurrentPerActIMF f log 
+  -- | emptyTracesAboveThreshold f log && f > 0 = True -- not needed
+  | emptyTraces log /= [] = True
   | singleActivity log /= [] = True
   | singleActivityFiltering f log /= [] = True
-  | emptyTraces log /= [] = True
-  -- | emptyTracesAboveThreshold f log && f > 0 = True
   | atLeastTwoActivities && concat (xorCut allAct allTransitions) /= [] = True
   | atLeastTwoActivities && concat (sequenceCut allAct allTransitions) /= [] = True
   | atLeastTwoActivities && concat (concurrentCut allAct allTransitions startAct endAct) /= [] = True
@@ -175,6 +175,7 @@ splitListToTraces num (x:xs) = (num, x) : (splitListToTraces num xs)
 
 splitTraceHelper :: [String] -> [[String]]
 splitTraceHelper trace = splitOn ["#"] trace
+
 
 
 tauLoop :: [(Int, [String])] -> [(Int, [String])]
