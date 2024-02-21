@@ -5,7 +5,7 @@ In particular, it consists of an implementation of the Inductive Miner and Induc
 The XES parsers are based on libraries xml-conduit and hxt.
 The CSV parser is based on library cassava.
 
-All implemented functions related to the Inductive Miner and Inductive Miner - Infrequent as well as the XES and CSV parsers are explained in *Frank, Patrick. (2024). Haskell & Process Mining*.
+All implemented functions related to the Inductive Miner and Inductive Miner - Infrequent as well as the XES and CSV parsers are explained in *Patrick Frank. Haskell & Process Mining, 2024*.
 The thesis also shows or argues about the correctness of the Inductive Miner implementations.
 
 
