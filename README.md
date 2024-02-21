@@ -9,7 +9,7 @@ All implemented functions related to the Inductive Miner and Inductive Miner - I
 The thesis also shows or argues about the correctness of the Inductive Miner implementations.
 
 
-# Project Setup
+## Project Setup
 
 Once the folder has been downloaded from GitHub, and GHC and cabal have been installed, please follow these steps:
 
@@ -22,7 +22,7 @@ To install the necessary libraries, run the following commands:
 3. ./install_libraries.sh
 
 
-# Compile and run the application: 
+## Compile and run the application: 
 
 The application can be compiled and run using the following commands:
 
@@ -33,7 +33,7 @@ The application can be compiled and run using the following commands:
 All further information and more detailed explanations can be found in the thesis.
 
 
-# Additional information:
+## Additional information:
 
 This project is current as of 19 February 2024 (date of thesis submission).
 Changes or improvements made since then can be found in Project "HaskellProcessMiningTool".
